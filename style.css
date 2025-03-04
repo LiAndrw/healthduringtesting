@@ -72,3 +72,43 @@ body {
     line-height: 1.5; /* Improve readability */
     margin-top: -350px;
   }
+
+
+  #slider-container {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  #slider-container label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  #slider-container input {
+    width: 300px;
+    vertical-align: middle;
+  }
+  
+  #slider-container #selectedScore {
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  #slider-value-display {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  
+  #chart-container {
+    text-align: center;
+  }
+  
+  .plot-title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .axis-label {
+    font-size: 12px;
+  }
