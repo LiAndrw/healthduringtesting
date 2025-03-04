@@ -74,41 +74,91 @@ body {
   }
 
 
-  #slider-container {
-    margin-bottom: 10px;
-    text-align: center;
-  }
+
+  /* Basic slider styling */
+#hrSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 300px;
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: background 0.3s;
+}
+
+/* Webkit (Chrome, Safari) track styling */
+#hrSlider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  background: #ff6b6b;
+  border-radius: 4px;
+}
+
+/* Mozilla (Firefox) track styling */
+#hrSlider::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  background: #ff6b6b;
+  border-radius: 4px;
+}
+
+/* Webkit (Chrome, Safari) thumb styling */
+#hrSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  background: red;
+  cursor: pointer;
+  border: none;
+  transform: translateY(-11px);
   
-  #slider-container label {
-    font-weight: bold;
-    margin-right: 10px;
-  }
+  /* Heart shape using clip-path */
+  clip-path: 
+    polygon(
+      50% 90%, /* Bottom point */
+      20% 50%, /* Left curve start */
+      0% 30%, /* Left curve inner point */
+      0% 20%, /* Left top curve */
+      10% 10%, /* Top left */
+      25% 5%, /* Upper left curve */
+      50% 20%, /* Top middle */
+      75% 5%, /* Upper right curve */
+      90% 10%, /* Top right */
+      100% 20%, /* Right top curve */
+      100% 30%, /* Right curve inner point */
+      80% 50% /* Right curve end */
+    );
+}
+
+/* Mozilla (Firefox) thumb styling */
+#hrSlider::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  background: red;
+  cursor: pointer;
+  border: none;
   
-  #slider-container input {
-    width: 300px;
-    vertical-align: middle;
-  }
-  
-  #slider-container #selectedScore {
-    font-weight: bold;
-    margin-left: 10px;
-  }
-  
-  #slider-value-display {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 16px;
-  }
-  
-  #chart-container {
-    text-align: center;
-  }
-  
-  .plot-title {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .axis-label {
-    font-size: 12px;
-  }
+  /* Same heart shape for Firefox */
+  clip-path: 
+    polygon(
+      50% 90%, 
+      20% 50%, 
+      0% 30%, 
+      0% 20%, 
+      10% 10%, 
+      25% 5%, 
+      50% 20%, 
+      75% 5%, 
+      90% 10%, 
+      100% 20%, 
+      100% 30%, 
+      80% 50%
+    );
+}
+
+/* Focus state */
+#hrSlider:focus {
+  background: #ff8787;
+}
