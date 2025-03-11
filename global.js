@@ -196,5 +196,70 @@
       scoreDisplay.textContent = " Score of the student with the closest average HR to the selected HR: " + initStudent.grade;
       updateChart(initStudent);
     });
+<<<<<<< Updated upstream
   })();
   
+=======
+    
+
+    // Initialize the dashboard using the sliders’ initial values
+    updateSliderDisplays();
+    const initialTarget = getTargetVector();
+    const initialSession = findClosestSession(initialTarget);
+    gradeDisplay.text(`Selected Exam: ${initialSession.exam.toUpperCase()} - Student: ${initialSession.student.toUpperCase()} - Grade: ${initialSession.grade}`);
+    updateChart(initialSession);
+  });
+})();
+
+
+
+(function() {
+  const scroller = scrollama();
+
+  function handleStepEnter(response) {
+    const sectionId = response.element.id;
+    console.log("Entered section:", sectionId);
+
+    if (sectionId === "hr") {
+      updateChart("HR");
+    } else if (sectionId === "eda") {
+      updateChart("EDA");
+    } else if (sectionId === "summary") {
+      updateChart("STRESS");
+    }
+  }
+
+  function updateChart(feature) {
+    console.log("Updating visualization for:", feature);
+
+    const session = examSessions[0]; // Select a session dynamically if needed
+    let timeSeries = session.timeSeries[feature];
+
+    let lineGen = d3.line()
+      .x(d => xScale(d.minute))
+      .y(d => yScale(d.value));
+
+    d3.selectAll(".line-path").remove();
+
+    svg.append("path")
+      .datum(timeSeries)
+      .attr("class", "line-path")
+      .attr("fill", "none")
+      .attr("stroke", getStrokeColor(feature))
+      .attr("stroke-width", 2)
+      .attr("d", lineGen);
+  }
+
+  function initScrollama() {
+    scroller
+      .setup({
+        step: ".step",
+        offset: 0.5, // Trigger updates when halfway into the section
+        debug: false
+      })
+      .onStepEnter(handleStepEnter);
+  }
+
+  window.addEventListener("load", initScrollama);
+})();
+>>>>>>> Stashed changes
