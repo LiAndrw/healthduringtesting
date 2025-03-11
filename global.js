@@ -262,4 +262,7 @@
 
   window.addEventListener("load", initScrollama);
 })();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
