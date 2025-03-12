@@ -44,69 +44,43 @@ margin-left: 5px;
 appearance: none;
 width: 300px;
 height: 8px;
-background: #ddd;
+background: rgb(77, 133, 237);
 border-radius: 4px;
 outline: none;
 transition: background 0.3s;
 }
 
-/* Webkit (Chrome, Safari) track styling */
+
+/* Default thumb and track styling */
 #sliders-container input[type=range]::-webkit-slider-runnable-track {
-width: 100%;
-height: 8px;
-background: #ff6b6b;
-border-radius: 4px;
+  width: 100%;
+  height: 10px; /* Slightly thicker */
+  background: linear-gradient(to right, blue, red); /* Blue on left, red on right */
+  border-radius: 5px;
 }
 
-/* Mozilla (Firefox) track styling */
-#sliders-container input[type=range]::-moz-range-track {
-width: 100%;
-height: 8px;
-background: #ff6b6b;
-border-radius: 4px;
+#sliders-container input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;  /* Black dot size */
+  height: 18px;
+  background: rgb(53, 121, 248); 
+  border-radius: 50%; /* Perfectly round */
+  cursor: pointer;
+  margin-top: -4px; /* Aligns the thumb with the track */
 }
 
-/* Webkit (Chrome, Safari) thumb styling
-/* For HR slider, we use a heart shape */
-#HRSlider::-webkit-slider-thumb {
--webkit-appearance: none;
-appearance: none;
-width: 30px;
-height: 30px;
-background: red;
-cursor: pointer;
-border: none;
-transform: translateY(-11px);
-clip-path: polygon(
-    50% 90%, 
-    20% 50%, 
-    0% 30%, 
-    0% 20%, 
-    10% 10%, 
-    25% 5%, 
-    50% 20%, 
-    75% 5%, 
-    90% 10%, 
-    100% 20%, 
-    100% 30%, 
-    80% 50%
-  );
+/* Mozilla (Firefox) Thumb */
+#sliders-container input[type=range]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: black;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-/* Default thumb styling for sliders other than HR */
-#sliders-container input[type=range]:not(#HRSlider)::-webkit-slider-thumb {
--webkit-appearance: none;
-appearance: none;
-width: 15px;
-height: 15px;
-background: #333;
-cursor: pointer;
-border: none;
-border-radius: 50%;
-transform: translateY(-3.5px);
-}
 
-/* Mozilla (Firefox) thumb styling for HR slider */
+/* 
 #HRSlider::-moz-range-thumb {
 width: 30px;
 height: 30px;
@@ -127,22 +101,11 @@ clip-path: polygon(
     100% 30%, 
     80% 50%
   );
-}
+} */
 
-/* Mozilla (Firefox) thumb styling for other sliders */
-#sliders-container input[type=range]:not(#HRSlider)::-moz-range-thumb {
-width: 15px;
-height: 15px;
-background: #333;
-cursor: pointer;
-border: none;
-border-radius: 50%;
-}
 
-/* Focus state for sliders */
-#sliders-container input[type=range]:focus {
-background: #ff8787;
-}
+
+
 
 /* Chart container styling */
 #chart-container {
