@@ -168,7 +168,7 @@
     const chartContainer = dashboard.append("div").attr("id", "chart-container");
 
     // Set dimensions and margins for the SVG chart
-    const margin = { top: 40, right: 30, bottom: 40, left: 50 };
+    const margin = { top: 40, right: 120, bottom: 40, left: 50 };
     const width = 700 - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
 
@@ -196,10 +196,12 @@
       .attr("transform", `translate(0, ${height})`);
     const yAxisGroup = svg.append("g")
       .attr("class", "y-axis");
-    // Append a legend group to the SVG (position it as needed)
+
+      
+// Append a legend group to the SVG (position it as needed)
 const legend = svg.append("g")
 .attr("class", "legend")
-.attr("transform", `translate(${width - 120}, 10)`); // Adjust position
+.attr("transform", `translate(${width + 20 }, 10)`); // Adjust position
 
 // Create a legend entry for each feature
 features.forEach((feature, i) => {
@@ -239,9 +241,9 @@ legendRow.append("text")
     // Helper: assign a distinct stroke color for each feature line
     function getStrokeColor(feature) {
       const colors = {
-        "HR": "steelblue",
+        "HR": "lightblue",
         "EDA": "orange",
-        "BVP": "green",
+        "BVP": "pink",
         "TEMP": "purple",
         "STRESS": "red"
       };

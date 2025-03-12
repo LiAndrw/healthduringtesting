@@ -66,7 +66,7 @@ background: #ff6b6b;
 border-radius: 4px;
 }
 
-/* Webkit (Chrome, Safari) thumb styling */
+/* Webkit (Chrome, Safari) thumb styling
 /* For HR slider, we use a heart shape */
 #HRSlider::-webkit-slider-thumb {
 -webkit-appearance: none;
@@ -155,8 +155,7 @@ margin: 0 auto;
 font-size: 18px;
 margin-bottom: 20px;
 font-weight: bold;
-}
-
+}*/
 
 img {
   max-width: 100%; /* Never exceed its original size */
