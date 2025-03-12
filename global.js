@@ -378,3 +378,167 @@ document.addEventListener("DOMContentLoaded", function() {
       }
   });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  const hookLines = document.querySelectorAll(".hook-text");
+  let currentIndex = 0;
+
+  document.getElementById("hook-container").addEventListener("click", function() {
+    if (currentIndex < hookLines.length - 1) {
+      currentIndex++;
+      hookLines[currentIndex].classList.remove("hidden");
+      hookLines[currentIndex].style.opacity = 1;
+    }
+  });
+
+  // Load the CSV data
+  d3.csv("a-wearable-exam-stress-dataset-for-predicting-cognitive-performance-in-real-world-settings-1.0.0/AvgData/avg_student_data.csv").then(data => {
+    // Convert numeric fields to numbers
+    data.forEach(d => {
+      d.avg_stress_midterm_1 = +d.avg_stress_midterm_1;
+      d.avg_stress_midterm_2 = +d.avg_stress_midterm_2;
+      d.avg_stress_final = +d.avg_stress_final;
+      d.avg_hr_midterm_1 = +d.avg_hr_midterm_1;
+      d.avg_hr_midterm_2 = +d.avg_hr_midterm_2;
+      d.avg_hr_final = +d.avg_hr_final;
+      d.avg_bvp_midterm_1 = +d.avg_bvp_midterm_1;
+      d.avg_bvp_midterm_2 = +d.avg_bvp_midterm_2;
+      d.avg_bvp_final = +d.avg_bvp_final;
+      d.avg_temp_midterm_1 = +d.avg_temp_midterm_1;
+      d.avg_temp_midterm_2 = +d.avg_temp_midterm_2;
+      d.avg_temp_final = +d.avg_temp_final;
+      d.midterm_1_grade = +d.midterm_1_grade;
+      d.midterm_2_grade = +d.midterm_2_grade;
+      d.final_grade = +d.final_grade;
+    });
+
+    // Initial exam and variable
+    let selectedExam = "midterm_1";
+    let selectedVariable = "avg_stress";
+
+    // Set up the SVG canvas
+    const margin = { top: 50, right: 50, bottom: 50, left: 50 };
+    const width = 800 - margin.left - margin.right;
+    const height = 500 - margin.top - margin.bottom;
+
+    const svg = d3.select("#dot-plot-container")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Scales
+    const xScale = d3.scaleLinear().range([0, width]);
+    const yScale = d3.scaleLinear().range([height, 0]);
+
+    // Axes
+    const xAxis = d3.axisBottom(xScale);
+    const yAxis = d3.axisLeft(yScale);
+
+    svg.append("g")
+      .attr("class", "x-axis")
+      .attr("transform", `translate(0,${height})`);
+
+    svg.append("g")
+      .attr("class", "y-axis");
+
+    // Tooltip logic
+    const tooltip = d3.select("#tooltip");
+
+    // Function to update the plot
+    function updatePlot() {
+      const xData = data.map(d => d[`${selectedVariable}_${selectedExam}`]);
+      const yData = data.map(d => d[`${selectedExam}_grade`]);
+
+      // Calculate buffered x-axis domain
+      const buffer = 0.20; // 5% buffer
+      const xMin = d3.min(xData) - buffer * (d3.max(xData) - d3.min(xData));
+      const xMax = d3.max(xData) + buffer * (d3.max(xData) - d3.min(xData));
+
+      // Update scales
+      xScale.domain([xMin, xMax]);
+      yScale.domain([0, selectedExam === "final" ? 200 : 100]); // Set y-axis domain based on exam type
+
+      // Update axes with transitions
+      svg.select(".x-axis")
+        .transition()
+        .duration(500)
+        .call(xAxis);
+
+      svg.select(".y-axis")
+        .transition()
+        .duration(500)
+        .call(yAxis);
+
+      // Draw dots with transitions
+      const dots = svg.selectAll(".dot")
+        .data(data);
+
+      dots.enter()
+        .append("circle")
+        .attr("class", "dot")
+        .attr("r", 5)
+        .attr("fill", "steelblue")
+        .on("mouseover", function(event, d) {
+          tooltip.classed("hidden", false)
+            .style("left", `${event.pageX + 10}px`)
+            .style("top", `${event.pageY - 10}px`)
+            .html(`
+              <p><strong>Student:</strong> ${d.Student}</p>
+              <p><strong>X Value:</strong> ${d[`${selectedVariable}_${selectedExam}`].toFixed(2)}</p>
+              <p><strong>Y Value:</strong> ${d[`${selectedExam}_grade`]}</p>
+            `);
+        })
+        .on("mouseout", function() {
+          tooltip.classed("hidden", true);
+        })
+        .merge(dots)
+        .transition()
+        .duration(500)
+        .attr("cx", d => xScale(d[`${selectedVariable}_${selectedExam}`]))
+        .attr("cy", d => yScale(d[`${selectedExam}_grade`]));
+
+      dots.exit()
+        .transition()
+        .duration(500)
+        .attr("r", 0)
+        .remove();
+
+      // Calculate the line of best fit (linear regression)
+      const regression = d3.regressionLinear()
+        .x(d => d[`${selectedVariable}_${selectedExam}`])
+        .y(d => d[`${selectedExam}_grade`])
+        .domain(xScale.domain());
+
+      const trendlineData = regression(data);
+
+      // Draw the trendline with transitions
+      svg.selectAll(".trendline").remove();
+      svg.append("path")
+        .datum(trendlineData)
+        .attr("class", "trendline")
+        .attr("d", d3.line()
+          .x(d => xScale(d[0]))
+          .y(d => yScale(d[1]))
+        )
+        .attr("stroke", "red")
+        .attr("stroke-width", 2)
+        .attr("fill", "none");
+      }
+
+    // Event listeners for radio buttons
+    d3.selectAll("#exam-selector input").on("change", function() {
+      selectedExam = this.value;
+      updatePlot();
+    });
+
+    d3.selectAll("#variable-selector input").on("change", function() {
+      selectedVariable = this.value;
+      updatePlot();
+    });
+
+    // Initial plot
+    updatePlot();
+  });
+});

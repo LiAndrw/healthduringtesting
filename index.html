@@ -17,9 +17,29 @@
     <p id="click-prompt">👉 Click for more</p>
 </div>
 
-  <!-- A container for all dashboard elements -->
-  <div id="dashboard"></div>
+  <!-- A container for dashboard elements -->
+  <div id="dashboard">
+    <div id="controls">
+      <div id="exam-selector">
+        <h3>Select Exam:</h3>
+        <label><input type="radio" name="exam" value="midterm_1" checked> Midterm 1</label>
+        <label><input type="radio" name="exam" value="midterm_2"> Midterm 2</label>
+        <label><input type="radio" name="exam" value="final"> Final</label>
+      </div>
+      <div id="variable-selector">
+        <h3>Select Health Variable:</h3>
+        <label><input type="radio" name="variable" value="avg_stress" checked> Stress</label>
+        <label><input type="radio" name="variable" value="avg_hr"> Heart Rate</label>
+        <label><input type="radio" name="variable" value="avg_bvp"> Blood Volume Pulse</label>
+        <label><input type="radio" name="variable" value="avg_temp"> Temperature</label>
+      </div>
+    </div>
+    <div id="dot-plot-container"></div>
+  </div>
+
+
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-regression@1.3.4/dist/d3-regression.min.js"></script>
   <script src="global.js"></script>
 </body>
 </html>
