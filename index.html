@@ -2,11 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Final Project Prototype - Upgraded Dashboard</title>
+  <title>Stress Vs. Scores</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
 </head>
 <body>
-  <h1>Exam Performance Dashboard</h1>
+  <h1>How do trends in body activity correlate with student’s scores on tests?🧠💡</h1>
+  <img src="/images/anxiety.jpg" alt="A photo of an anxious girl during exam" />
+  <div id="hook-container">
+    <p class="hook-text" id="hook-line-1">💓 Your heart races. Your palms sweat. You experience <b>stress!</b></p>
+    <p class="hook-text hidden" id="hook-line-2">❓ Have you ever wondered how your body activities change during an exam? And <b>how do them affect your scores?</b></p>
+    <p class="hook-text hidden" id="hook-line-3">❓ Can we predict their scores? </b></p>
+    <p id="click-prompt">👉 Click for more</p>
+</div>
+
+
   <!-- A container for all dashboard elements -->
   <div id="dashboard"></div>
   <script src="https://d3js.org/d3.v7.min.js"></script>

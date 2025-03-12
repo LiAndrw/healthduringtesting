@@ -156,3 +156,39 @@ font-size: 18px;
 margin-bottom: 20px;
 font-weight: bold;
 }
+
+
+img {
+  max-width: 100%; /* Never exceed its original size */
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Center the image */
+}
+
+#hook-container {
+  text-align: center;
+  font-size: 24px;
+  max-width: 700px;
+  margin: 50px auto;
+  cursor: pointer;
+}
+
+.hook-text {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hook-text:first-child {
+  opacity: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+#click-prompt {
+  font-size: 14px; /* Smaller text */
+  color: gray;
+  text-align: center;
+  margin-top: 5px;
+}

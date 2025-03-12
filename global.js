@@ -362,3 +362,17 @@ function computeDistance(session, target) {
     updateChart(initialSession);
   });
 })();
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const hookLines = document.querySelectorAll(".hook-text");
+  let currentIndex = 0;
+
+  document.getElementById("hook-container").addEventListener("click", function() {
+      if (currentIndex < hookLines.length - 1) {
+          currentIndex++;
+          hookLines[currentIndex].classList.remove("hidden");
+          hookLines[currentIndex].style.opacity = 1;
+      }
+  });
+});
