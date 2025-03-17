@@ -443,23 +443,62 @@ d3.csv("a-wearable-exam-stress-dataset-for-predicting-cognitive-performance-in-r
       .attr("class", "y-axis");
 
   // Add X-axis label
-  svg.append("text")
-      .attr("class", "x-axis-label")
-      .attr("x", width / 2)
-      .attr("y", height + margin.bottom - 10)
-      .attr("text-anchor", "middle")
-      .style("font-size", "14px")
-      .text("Exam Duration (Minutes)");
+  const xAxisLabel = svg.append("text")
+    .attr("class", "x-axis-label")
+    .attr("x", width / 2)
+    .attr("y", height + margin.bottom - 10)
+    .attr("text-anchor", "middle")
+    .style("font-size", "14px");
 
   // Add Y-axis label
-  svg.append("text")
-      .attr("class", "y-axis-label")
-      .attr("transform", "rotate(-90)")
-      .attr("x", -height / 2)
-      .attr("y", -margin.left + 15)
-      .attr("text-anchor", "middle")
-      .style("font-size", "14px")
-      .text("Grade (Points)");
+  const yAxisLabel = svg.append("text")
+    .attr("class", "y-axis-label")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -height / 2)
+    .attr("y", -margin.left + 15)
+    .attr("text-anchor", "middle")
+    .style("font-size", "14px");
+
+  // Function to update axis labels
+  function updateAxisLabels() {
+    // Update X-axis label based on selected variable
+    let xLabelText;
+    switch (selectedVariable) {
+        case "avg_stress":
+            xLabelText = "Average Overall Stress Level (0-100%)";
+            break;
+        case "avg_hr":
+            xLabelText = "Average Heart Rate (BPM)";
+            break;
+        case "avg_bvp":
+            xLabelText = "Average Blood Volume Pulse";
+            break;
+        case "avg_temp":
+            xLabelText = "Average Skin Surface Temperature (°C)";
+            break;
+        default:
+            xLabelText = "Average Value";
+    }
+    xAxisLabel.text(xLabelText);
+
+    // Update Y-axis label based on selected exam
+    let yLabelText;
+    switch (selectedExam) {
+        case "midterm_1":
+            yLabelText = "Midterm 1 Score (0-100)";
+            break;
+        case "midterm_2":
+            yLabelText = "Midterm 2 Score (0-100)";
+            break;
+        case "final":
+            yLabelText = "Final Score (0-200)";
+            break;
+        default:
+            yLabelText = "Grade (Points)";
+    }
+    yAxisLabel.text(yLabelText);
+  }
+
 
   // Define color scale for students
   const studentColorScale = d3.scaleOrdinal(d3.schemeSet3)
@@ -503,14 +542,26 @@ d3.csv("a-wearable-exam-stress-dataset-for-predicting-cognitive-performance-in-r
       const dots = svg.selectAll(".dot")
           .data(data);
 
-      dots.enter()
+          dots.enter()
           .append("circle")
           .attr("class", "dot")
           .attr("r", 6)
           .attr("fill", d => studentColorScale(d.Student))  // Assign a unique color per student
           .on("mouseover", function(event, d) {
+              // Get the selected health variable value and exam score
+              const healthValue = d[`${selectedVariable}_${selectedExam}`];
+              const examScore = d[`${selectedExam}_grade`];
+      
+              // Format the tooltip text with HTML for vertical stacking
+              const tooltipText = `
+                  <div><strong>Student:</strong> ${d.Student}</div>
+                  <div><strong>${selectedVariable.replace("avg_", "").toUpperCase()}:</strong> ${healthValue.toFixed(4)}</div>
+                  <div><strong>${selectedExam.replace("_", " ").toUpperCase()} Score:</strong> ${examScore}</div>
+              `;
+      
+              // Show the tooltip
               tooltip.style("visibility", "visible")
-                  .text(`Student: ${d.Student}`)
+                  .html(tooltipText)  // Use .html() to render HTML content
                   .style("left", `${event.pageX + 10}px`)
                   .style("top", `${event.pageY - 10}px`);
           })
@@ -553,6 +604,7 @@ d3.csv("a-wearable-exam-stress-dataset-for-predicting-cognitive-performance-in-r
           .attr("stroke", "red")
           .attr("stroke-width", 2)
           .attr("fill", "none");
+    updateAxisLabels();
   }
 
   // Event listeners for radio buttons
@@ -568,5 +620,6 @@ d3.csv("a-wearable-exam-stress-dataset-for-predicting-cognitive-performance-in-r
 
   // Initial plot
   updatePlot();
+  updateAxisLabels();
 });
 })
