@@ -18,7 +18,7 @@
   <div class="content hook-text">We've all been there.</div>
   <div class="spacer"></div> 
   <hr class="custom-divider" />
-  <div class="intro">
+  <div class="contents">
     <p>Stress in high-stakes situations like exams is a common experience, yet most studies on the body's stress response rely on artificial lab stimuli rather than real-world scenarios.</p>
     <p>A study conducted by Md Rafiul Amin, Dilranjan S. Wickramasuriya, and Rose T. Faghih<sup><a href="https://physionet.org/content/wearable-exam-stress/1.0.0/">[Link]</a></sup> aimed to 
       investigate physiological stress responses in real-world academic settings. 
@@ -37,8 +37,8 @@
 
     <p>Along with these 4 features, a new feature 🧠<b>Stress</b> was created that would track overall student stress felt during an exam.This was created by using the heart rate, blood volume pulse, and skin surface temperature features. Using the individual average student data per min datasets, each feature value was normalized using the global max/min values:</p>
     <img src="images/stress.jpg" alt="stress formula"/> 
-    <h4>Let's take a look at how these physiological metrics vary across all 10 students during different exams</h4>
-    <p2>Hover over the dots for more info</p2>
+    <h4>Let's take a look at the relationship between <b>students' test performance</b> and <b>physiological metrics</b> for different exams</h4>
+
   </div>
 
  <!-- The Modal -->
@@ -59,7 +59,7 @@
             <h3>Select Exam:</h3>
             <label><input type="radio" name="exam" value="midterm_1" checked> Midterm 1</label>
             <label><input type="radio" name="exam" value="midterm_2"> Midterm 2</label>
-            <label><input type="radio" name="exam" value="final"> Final</label>
+            <label><input type="radio" name="exam" value="final"> Final </label>
         </div>
         <div id="variable-selector" class="box">
             <h3>Select Health Variable:</h3>
@@ -72,8 +72,10 @@
 </div>
 
 
+
 <!--Visualization 2-->
 <div id="dashboard"></div>
+
 
 <footer>
   <p>©2025 Made by Zifan Luo, Junhao Yang, Andrew Li.</p>
