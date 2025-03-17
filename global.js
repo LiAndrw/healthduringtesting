@@ -423,6 +423,7 @@ d3.csv("a-wearable-exam-stress-dataset-for-predicting-cognitive-performance-in-r
       "avg_hr_midterm_1", "avg_hr_midterm_2", "avg_hr_final",
       "avg_bvp_midterm_1", "avg_bvp_midterm_2", "avg_bvp_final",
       "avg_temp_midterm_1", "avg_temp_midterm_2", "avg_temp_final",
+      "avg_eda_midterm_1", "avg_eda_midterm_2", "avg_eda_final",
       "midterm_1_grade", "midterm_2_grade", "final_grade"
   ];
   
@@ -493,6 +494,9 @@ d3.csv("a-wearable-exam-stress-dataset-for-predicting-cognitive-performance-in-r
             break;
         case "avg_temp":
             xLabelText = "Average Skin Surface Temperature (°C)";
+            break;
+        case "avg_eda":
+            xLabelText = "Average Electrodermal Activity (μS)";
             break;
         default:
             xLabelText = "Average Value";
