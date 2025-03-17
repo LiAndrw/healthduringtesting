@@ -75,7 +75,7 @@
                 d[colName] = d[colName] * 100;
               }
               if (feature === "BVP") {
-                d[colName] = d[colName] * 5;
+                d[colName] = d[colName];
               }
               if (feature === "TEMP") {
                 d[colName] = d[colName] * 5;
@@ -136,36 +136,42 @@
     // --- Build the Dashboard UI ---
 
     // Select the dashboard container (in index.html)
-    const dashboard = d3.select("#dashboard");
+    // --- New Dashboard UI Layout ---
+// Select the dashboard container (in index.html)
+const dashboard = d3.select("#dashboard");
 
-    // Create a container for the sliders
-    const slidersContainer = dashboard.append("div").attr("id", "sliders-container");
+// Create the chart container (left side)
+const chartContainer = dashboard.append("div").attr("id", "chart-container");
 
-    // For each feature, create a slider with a label and a value display
-    features.forEach(feature => {
-      let sliderGroup = slidersContainer.append("div").attr("class", "slider-group");
-      
-      sliderGroup.append("label")
-        .attr("for", `${feature}Slider`)
-        .text(`Average ${feature}: `);
-      let slider = sliderGroup.append("input")
-        .attr("type", "range")
-        .attr("id", `${feature}Slider`)
-        .attr("min", sliderRanges[feature].min)
-        .attr("max", sliderRanges[feature].max)
-        .attr("value", Math.round((sliderRanges[feature].min + sliderRanges[feature].max) / 2));
-      console.log(`Created slider for ${feature}:`, slider.node());
-      sliderGroup.append("span")
-        .attr("id", `${feature}ValueDisplay`)
-        .text(Math.round((sliderRanges[feature].min + sliderRanges[feature].max) / 2));
-      //console.log(`Created slider for ${feature}:`, document.getElementById(`${feature}Slider`));
-    });
+// Create a new container for controls (right side)
+const controlsContainer = dashboard.append("div").attr("id", "controls-container");
 
-    // Create a display area for the selected grade and exam session
-    const gradeDisplay = dashboard.append("div").attr("id", "grade-display");
+// Create the grade display inside the controls container
+const gradeDisplay = controlsContainer.append("div").attr("id", "grade-display");
 
-    // Create the chart container
-    const chartContainer = dashboard.append("div").attr("id", "chart-container");
+// Create a container for the sliders inside the controls container
+const slidersContainer = controlsContainer.append("div").attr("id", "sliders-container");
+
+// For each feature, create a slider with a label and a value display
+features.forEach(feature => {
+  let sliderGroup = slidersContainer.append("div").attr("class", "slider-group");
+  
+  sliderGroup.append("label")
+    .attr("for", `${feature}Slider`)
+    .text(`Average ${feature}: `);
+  
+  let slider = sliderGroup.append("input")
+    .attr("type", "range")
+    .attr("id", `${feature}Slider`)
+    .attr("min", sliderRanges[feature].min)
+    .attr("max", sliderRanges[feature].max)
+    .attr("value", Math.round((sliderRanges[feature].min + sliderRanges[feature].max) / 2));
+  
+  sliderGroup.append("span")
+    .attr("id", `${feature}ValueDisplay`)
+    .text(Math.round((sliderRanges[feature].min + sliderRanges[feature].max) / 2));
+});
+
 
     // Set dimensions and margins for the SVG chart
     const margin = { top: 40, right: 120, bottom: 40, left: 50 };
@@ -220,7 +226,7 @@ if(feature=='EDA'){
   feature_multiplied=feature_multiplied+'*100';
 }
 if(feature=='BVP'){
-  feature_multiplied=feature_multiplied+'*5';
+  feature_multiplied=feature_multiplied+'';
 }
 if(feature=='TEMP'){
   feature_multiplied=feature_multiplied+'*5';

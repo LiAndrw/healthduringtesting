@@ -331,3 +331,29 @@ label {
 input[type="radio"] {
   margin-right: 8px;
 }
+
+/* New layout for the second visualization */
+#dashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#chart-container {
+  flex: 3;
+  /* Optional: set a fixed width or responsive width */
+  /* width: 700px; */
+}
+
+#controls-container {
+  flex: 1;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* You can keep the existing styles for #sliders-container and #grade-display or adjust them as needed */
