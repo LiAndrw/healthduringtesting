@@ -11,13 +11,33 @@
   <h1>🧠Stress vs. Scores💯</h1>
   <h2>Exploring The Correlation Between Physiological Activity and Student Test Performance</h2>
   <img src="/images/anxiety.jpg" alt="A photo of an anxious girl during exam" />
-  <div id="hook-container">
-    <p class="hook-text" id="hook-line-1">💓 Your heart races. Your palms sweat. You experience <b>stress!</b></p>
-    <p class="hook-text hidden" id="hook-line-2">❓ Have you ever wondered how your stress levels change during an exam? And <b>how do them affect your scores?</b></p>
-    <p class="hook-text hidden" id="hook-line-3">❓ Can we predict the scores? </b></p>
-    <p id="click-prompt">👉 Click for more</p>
+  
+  <div class="spacer"></div>
+  <div class="content hook-text">Have you ever felt nervous during an exam?</div>
+  <div class="content hook-text">Your heart races💓, your palms sweat💧, and your mind fights to stay focused.</div>
+  <div class="content hook-text">We've all been there.</div>
+  <div class="spacer"></div> 
+  <hr class="custom-divider" />
+  <div class="intro">
+    <p>Stress in high-stakes situations like exams is a common experience, yet most studies on the body's stress response rely on artificial lab stimuli rather than real-world scenarios.</p>
+    <p>A study conducted by Md Rafiul Amin, Dilranjan S. Wickramasuriya, and Rose T. Faghih<sup><a href="https://physionet.org/content/wearable-exam-stress/1.0.0/">[Link]</a></sup> aimed to 
+      investigate physiological stress responses in real-world academic settings. 
+      Unlike traditional stress studies that rely on artificial stimuli, this research focused on capturing real-time physiological data from students as they underwent midterm and final exams.</p>
+      
+      
+    <p>By utilizing <span class="popup-trigger">Empatica E4</span> wristband, the study recorded recorded 6 health features for each student: skin surface temperature, blood volume pulse, electrodermal activity, heart rate, interbeat interval and accelerometer data.</p>
+  
+  </div>
 
-</div>
+   <!-- The Modal -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img src="images/wrist-band.jpg" alt="E4-wristband" />
+    </div>
+  </div>
+
+  
 
   <!-- A container for dashboard elements -->
   <div id="dashboard">
@@ -39,6 +59,8 @@
     <div id="dot-plot-container"></div>
   </div>
 
+
+
   <footer>
     <p>©2025 Made by Zifan Luo, Junhao Yang, Andrew Li.</p>
   </footer>
@@ -46,5 +68,28 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3-regression@1.3.4/dist/d3-regression.min.js"></script>
   <script src="global.js"></script>
+  <script>
+    // Get elements
+    var modal = document.getElementById("imageModal");
+    var trigger = document.querySelector(".popup-trigger");
+    var closeBtn = document.querySelector(".close");
+
+    // Show modal when text is clicked
+    trigger.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // Close modal when close button is clicked
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Close modal when clicking outside of the modal content
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>

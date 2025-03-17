@@ -367,32 +367,50 @@ function computeDistance(session, target) {
 })();
 
 
-document.addEventListener("DOMContentLoaded", function() {
-  const hookLines = document.querySelectorAll(".hook-text");
-  let currentIndex = 0;
+// document.addEventListener("DOMContentLoaded", function() {
+//   const hookLines = document.querySelectorAll(".hook-text");
+//   let currentIndex = 0;
 
-  document.getElementById("hook-container").addEventListener("click", function() {
-      if (currentIndex < hookLines.length - 1) {
-          currentIndex++;
-          hookLines[currentIndex].classList.remove("hidden");
-          hookLines[currentIndex].style.opacity = 1;
-      }
+//   document.getElementById("hook-container").addEventListener("click", function() {
+//       if (currentIndex < hookLines.length - 1) {
+//           currentIndex++;
+//           hookLines[currentIndex].classList.remove("hidden");
+//           hookLines[currentIndex].style.opacity = 1;
+//       }
+//   });
+// });
+
+// document.addEventListener("DOMContentLoaded", function() {
+//   const hookLines = document.querySelectorAll(".hook-text");
+//   let currentIndex = 0;
+
+//   document.getElementById("hook-container").addEventListener("click", function() {
+//     if (currentIndex < hookLines.length - 1) {
+//       currentIndex++;
+//       hookLines[currentIndex].classList.remove("hidden");
+//       hookLines[currentIndex].style.opacity = 1;
+//     }
+//   });
+
+// fade-in effect
+window.addEventListener('scroll', function() {
+  var hookTexts = document.querySelectorAll('.hook-text');
+  hookTexts.forEach(function(text) {
+    if (isElementInViewport(text)) {
+      text.classList.add('visible');
+    }
   });
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-  const hookLines = document.querySelectorAll(".hook-text");
-  let currentIndex = 0;
-
-  document.getElementById("hook-container").addEventListener("click", function() {
-    if (currentIndex < hookLines.length - 1) {
-      currentIndex++;
-      hookLines[currentIndex].classList.remove("hidden");
-      hookLines[currentIndex].style.opacity = 1;
-    }
-  });
-
-
+function isElementInViewport(element) {
+  var rect = element.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
 
 
 
@@ -622,4 +640,4 @@ d3.csv("a-wearable-exam-stress-dataset-for-predicting-cognitive-performance-in-r
   updatePlot();
   updateAxisLabels();
 });
-})
+
