@@ -178,8 +178,44 @@ img {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   font-size: 14px;
   color: #333;
+  white-space: pre-line; /* Ensures line breaks are respected */
 }
 
 .hidden {
   display: none;
+}
+
+/* Health Trends Container */
+#health-trends-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#health-trends-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+#health-trends-controls div {
+  flex: 1;
+  margin-right: 20px;
+}
+
+#health-trends-controls h3 {
+  margin-bottom: 10px;
+}
+
+#health-trends-controls label {
+  display: block;
+  margin: 5px 0;
+}
+
+#health-trends-chart {
+  width: 100%;
+  height: 400px;
 }
