@@ -25,68 +25,74 @@
       Unlike traditional stress studies that rely on artificial stimuli, this research focused on capturing real-time physiological data from students as they underwent midterm and final exams.</p>
       
       
-    <p>By utilizing <span class="popup-trigger">Empatica E4</span> wristband, the study recorded recorded 6 health features for each student: skin surface temperature, blood volume pulse, electrodermal activity, heart rate, interbeat interval and accelerometer data.</p>
+    
+    <p>By utilizing <span class="popup-trigger">Empatica E4</span> wristband, the study recorded 6 health features during 3 exams(midterm 1 , midterm 2 and final) for each student(10 students) and we focused on the following 4 features:</p>
+      <ul>
+        <li><b>Skin Surface Temperature(TEMP)</b>: Measures skin temperature using a built-in temperature sensor in degrees Celsius (°C).</li>
+        <li><b>Electrodermal Activity(EDA)</b>: EDA reflects sweat gland activity, which is controlled by the autonomic nervous system.
+          Higher values indicate increased stress.</li>
+        <li><b>Heart Rate(HR)</b>: Elevated heart rate is commonly associated with anxiety and cognitive load.</li>
+        <li><b>Blood Volume Pulse(BVP)</b>: Captures blood volume changes in the microvascular tissue using a photoplethysmograph (PPG) sensor.If high BVP is accompanied by high heart rate (HR) and increased electrodermal activity (EDA), it may indicate high cognitive stress.</li>
+      </ul>
 
-    <p></p>
-  
+    <p>Along with these 4 features, a new feature 🧠<b>Stress</b> was created that would track overall student stress felt during an exam.This was created by using the heart rate, blood volume pulse, and skin surface temperature features. Using the individual average student data per min datasets, each feature value was normalized using the global max/min values:</p>
+    <img src="images/stress.jpg" alt="stress formula"/> 
+    <h4>Let's take a look at how these physiological metrics vary across all 10 students during different exams</h4>
+    <p2>Hover over the dots for more info</p2>
   </div>
 
-   <!-- The Modal -->
-  <div id="imageModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <img src="images/wrist-band.jpg" alt="E4-wristband" />
+ <!-- The Modal -->
+ <div id="imageModal" class="modal">
+  <div class="modal-content"> 
+      <span class="close">&times;</span>
+      <img src="images/wrist-band.jpg" alt="E4-wristband" />
+  </div> 
+ </div>
+
+
+<!--Visualization 1-->
+  <div id="dashboard1">
+    <div id="dot-plot-container">
     </div>
-  </div>
-
-  
-
-  <!-- A container for dashboard elements -->
-  <div id="dashboard">
     <div id="controls">
-      <div id="exam-selector">
-        <h3>Select Exam:</h3>
-        <label><input type="radio" name="exam" value="midterm_1" checked> Midterm 1</label>
-        <label><input type="radio" name="exam" value="midterm_2"> Midterm 2</label>
-        <label><input type="radio" name="exam" value="final"> Final</label>
-      </div>
-      <div id="variable-selector">
-        <h3>Select Health Variable:</h3>
-        <label><input type="radio" name="variable" value="avg_stress" checked> Stress</label>
-        <label><input type="radio" name="variable" value="avg_hr"> Heart Rate(HR)</label>
-        <label><input type="radio" name="variable" value="avg_bvp"> Blood Volume Pulse(BVP)</label>
-        <label><input type="radio" name="variable" value="avg_temp"> Temperature(TEMP)</label>
-      </div>
+        <div id="exam-selector" class="box">
+            <h3>Select Exam:</h3>
+            <label><input type="radio" name="exam" value="midterm_1" checked> Midterm 1</label>
+            <label><input type="radio" name="exam" value="midterm_2"> Midterm 2</label>
+            <label><input type="radio" name="exam" value="final"> Final</label>
+        </div>
+        <div id="variable-selector" class="box">
+            <h3>Select Health Variable:</h3>
+            <label><input type="radio" name="variable" value="avg_stress" checked> Stress</label>
+            <label><input type="radio" name="variable" value="avg_hr"> Heart Rate (HR)</label>
+            <label><input type="radio" name="variable" value="avg_bvp"> Blood Volume Pulse (BVP)</label>
+            <label><input type="radio" name="variable" value="avg_temp"> Temperature (TEMP)</label>
+        </div>
     </div>
-    <div id="dot-plot-container"></div>
-  </div>
+</div>
 
 
+<!--Visualization 2-->
+<div id="dashboard"></div>
 
-  <footer>
-    <p>©2025 Made by Zifan Luo, Junhao Yang, Andrew Li.</p>
-  </footer>
+<footer>
+  <p>©2025 Made by Zifan Luo, Junhao Yang, Andrew Li.</p>
+</footer>
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3-regression@1.3.4/dist/d3-regression.min.js"></script>
   <script src="global.js"></script>
   <script>
-    // Get elements
     var modal = document.getElementById("imageModal");
     var trigger = document.querySelector(".popup-trigger");
     var closeBtn = document.querySelector(".close");
 
-    // Show modal when text is clicked
     trigger.onclick = function() {
         modal.style.display = "block";
     }
-
-    // Close modal when close button is clicked
     closeBtn.onclick = function() {
         modal.style.display = "none";
     }
-
-    // Close modal when clicking outside of the modal content
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
