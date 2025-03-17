@@ -7,9 +7,16 @@ body {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 40px;
   margin: 10px 0;
   padding: 5px;
+}
+
+h2{
+  font-size: 23px;
+  margin: 10px 0;
+  padding: 5px;
+  color:grey;
 }
 
 /* Dashboard container styling */
