@@ -15,6 +15,7 @@
     <p class="hook-text hidden" id="hook-line-2">❓ Have you ever wondered how your stress levels change during an exam? And <b>how do them affect your scores?</b></p>
     <p class="hook-text hidden" id="hook-line-3">❓ Can we predict the scores? </b></p>
     <p id="click-prompt">👉 Click for more</p>
+
 </div>
 
   <!-- A container for dashboard elements -->
@@ -29,14 +30,17 @@
       <div id="variable-selector">
         <h3>Select Health Variable:</h3>
         <label><input type="radio" name="variable" value="avg_stress" checked> Stress</label>
-        <label><input type="radio" name="variable" value="avg_hr"> Heart Rate</label>
-        <label><input type="radio" name="variable" value="avg_bvp"> Blood Volume Pulse</label>
-        <label><input type="radio" name="variable" value="avg_temp"> Temperature</label>
+        <label><input type="radio" name="variable" value="avg_hr"> Heart Rate(HR)</label>
+        <label><input type="radio" name="variable" value="avg_bvp"> Blood Volume Pulse(BVP)</label>
+        <label><input type="radio" name="variable" value="avg_temp"> Temperature(TEMP)</label>
       </div>
     </div>
     <div id="dot-plot-container"></div>
   </div>
 
+  <footer>
+    <p>©2025 Made by Zifan Luo, Junhao Yang, Andrew Li.</p>
+  </footer>
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3-regression@1.3.4/dist/d3-regression.min.js"></script>
