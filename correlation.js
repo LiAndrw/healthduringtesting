@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const basePath = "a-wearable-exam-stress-dataset-for-predicting-cognitive-performance-in-real-world-settings-1.0.0/CleanData/";
   const students = ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10"];
   const exams = ["midterm_1", "midterm_2", "final"];
-  const features = ["stress", "hr", "bvp", "temp"];
+  const features = ["stress", "hr", "bvp", "temp", "eda"];
 
   let selectedExam = "midterm_1";
   let selectedFeature = "stress";
@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "stress": "Stress Level (0-100%)",
     "hr": "Heart Rate (BPM)",
     "bvp": "Blood Volume Pulse",
-    "temp": "Skin Surface Temperature (°C)"
+    "temp": "Skin Surface Temperature (°C)",
+    "eda": "Electrodermal Activity (μS)"
   };
 
   // Helper function to get the correct file path
