@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 20px;
   text-align: center;
-  background-color: rgb(255, 255, 255);
+  background-color: antiquewhite;
 }
 
 h1 {
@@ -169,12 +169,13 @@ img {
   align-items: center;
   flex-direction: column;
 }
-
 .custom-divider {
-    width:90%; 
-    height: 4px; 
-    background-color:lightpink; 
-  }
+  width: 90%;  
+  height: 2px;  
+  background-color: #ccc;  
+  border: none;  
+  margin: 10px auto; 
+}
 
 .contents {
     font-size: 1.3em; 
@@ -187,7 +188,7 @@ img {
 
 /* Style for the clickable text */
 .popup-trigger {
-  color: pink;
+  color: blue;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -356,9 +357,6 @@ input[type="radio"] {
 }
 
 /* You can keep the existing styles for #sliders-container and #grade-display or adjust them as needed */
-
-
-
 
 #line-chart-dashboard {
   display: flex;
