@@ -37,8 +37,6 @@
 
     <p>Along with these 4 features, a new feature 🧠<b>Stress</b> was created that would track overall student stress felt during an exam.This was created by using the heart rate, blood volume pulse, and skin surface temperature features. Using the individual average student data per min datasets, each feature value was normalized using the global max/min values:</p>
     <img src="images/stress.jpg" alt="stress formula"/> 
-    <h4>Let's take a look at the relationship between <b>students' test performance</b> and <b>physiological metrics</b> for different exams</h4>
-
   </div>
 
  <!-- The Modal -->
@@ -49,8 +47,64 @@
   </div> 
  </div>
 
+ <hr class="custom-divider" />
+ <div class="contents">
+     <p>We first wanted to show how the health features changed over the course of an exam. This visualization below shows the trends of given health features for students over the course of any given exam. 
+     </p>
+ </div>
 
-<!--Visualization 1-->
+<!-- Main Line Chart Dashboard -->
+<div id="line-chart-dashboard">
+  <div id="line-chart" class="box"></div>
+  <div id="line-chart-controls">
+      <!-- Exam Selector -->
+      <div id="line-chart-exam-selector" class="box">
+          <h3>Select Exam:</h3>
+          <label><input type="radio" name="line-chart-exam" value="midterm_1" checked> Midterm 1</label>
+          <label><input type="radio" name="line-chart-exam" value="midterm_2"> Midterm 2</label>
+          <label><input type="radio" name="line-chart-exam" value="final"> Final</label>
+      </div>
+
+      <!-- Variable Selector -->
+      <div id="line-chart-variable-selector" class="box">
+          <h3>Select Health Variable:</h3>
+          <label><input type="radio" name="line-chart-variable" value="stress" checked> Stress</label>
+          <label><input type="radio" name="line-chart-variable" value="hr"> Heart Rate (HR)</label>
+          <label><input type="radio" name="line-chart-variable" value="bvp"> Blood Volume Pulse (BVP)</label>
+          <label><input type="radio" name="line-chart-variable" value="temp"> Temperature (TEMP)</label>
+          <label><input type="radio" name="line-chart-variable" value="eda"> Electrodermal Activity (EDA)</label>
+      </div>
+
+      <!-- Student Selector -->
+      <div id="student-selector" class="box">
+          <h3>Select Students:</h3>
+          <label><input type="checkbox" name="student" value="s1" checked> Student 1</label>
+          <label><input type="checkbox" name="student" value="s2" checked> Student 2</label>
+          <label><input type="checkbox" name="student" value="s3" checked> Student 3</label>
+          <label><input type="checkbox" name="student" value="s4" checked> Student 4</label>
+          <label><input type="checkbox" name="student" value="s5" checked> Student 5</label>
+          <label><input type="checkbox" name="student" value="s6" checked> Student 6</label>
+          <label><input type="checkbox" name="student" value="s7" checked> Student 7</label>
+          <label><input type="checkbox" name="student" value="s8" checked> Student 8</label>
+          <label><input type="checkbox" name="student" value="s9" checked> Student 9</label>
+          <label><input type="checkbox" name="student" value="s10" checked> Student 10</label>
+      </div>
+  </div>
+</div>
+
+<div class="contents">
+  <p><b>Interesting Takeaways</b>:The heart rates of students for all tests seems to steadily decrease. For all tests, students experienced a slight drop in skin surface temperature, which then increases significantly and stays high until the end of the exam. Blood volume pulse shows little correlation with exam duration, but all tests have momentary spikes for certain students. </p>
+</div>
+
+ 
+<hr class="custom-divider" />
+ <div class="contents">
+     <p>We then wanted to show the correlation between average health feature values and how well students performed on a given test. This visualization shows the given average health feature values of students and shows how they relate to how well each student did on a given test.
+     </p>
+     <p2>Hover over the point for more info</p2>
+ </div>
+
+<!--Visualization 2-->
   <div id="dashboard1">
     <div id="dot-plot-container">
     </div>
@@ -72,47 +126,14 @@
     </div>
 </div>
 
+<div class="contents">
+  <p><b>Interesting Takeaways</b>: Interestingly, in all exams, the more stressed students tended to perform better on average. The same is true for heart rate and temperature as well. Meanwhile, blood volume pulse seems to have little correlation with student success. Perhaps blood volume pulse might not be a good indicator of student success on exams? </p>
+</div>
 
 
-<!--Visualization 2-->
+<hr class="custom-divider" />
+<!--Visualization 3-->
 <div id="dashboard"></div>
-
-<!--Visualization 3-->>
-<div id="line-chart-container">
-  <h2>Health Feature vs. Test Progress</h2>
-  <div id="line-chart-controls">
-    <div id="line-chart-exam-selector">
-    <h3>Select Exam:</h3>
-      <label><input type="radio" name="line-chart-exam" value="midterm_1" checked> Midterm 1</label>
-      <label><input type="radio" name="line-chart-exam" value="midterm_2"> Midterm 2</label>
-      <label><input type="radio" name="line-chart-exam" value="final"> Final</label>
-    </div>
-    <div id="line-chart-variable-selector">
-      <h3>Select Health Variable:</h3>
-      <label><input type="radio" name="line-chart-variable" value="stress" checked> Stress</label>
-      <label><input type="radio" name="line-chart-variable" value="hr"> Heart Rate(HR)</label>
-      <label><input type="radio" name="line-chart-variable" value="bvp"> Blood Volume Pulse(BVP)</label>
-      <label><input type="radio" name="line-chart-variable" value="temp"> Temperature(TEMP)</label>
-      <label><input type="radio" name="line-chart-variable" value="eda"> Electrodermal Activity(EDA)</label>
-    </div>
-  </div>
-  <div id="student-selector" class="box">
-    <h3>Select Students:</h3>
-    <label><input type="checkbox" name="student" value="s1" checked> Student 1</label>
-    <label><input type="checkbox" name="student" value="s2" checked> Student 2</label>
-    <label><input type="checkbox" name="student" value="s3" checked> Student 3</label>
-    <label><input type="checkbox" name="student" value="s4" checked> Student 4</label>
-    <label><input type="checkbox" name="student" value="s5" checked> Student 5</label>
-    <label><input type="checkbox" name="student" value="s6" checked> Student 6</label>
-    <label><input type="checkbox" name="student" value="s7" checked> Student 7</label>
-    <label><input type="checkbox" name="student" value="s8" checked> Student 8</label>
-    <label><input type="checkbox" name="student" value="s9" checked> Student 9</label>
-    <label><input type="checkbox" name="student" value="s10" checked> Student 10</label>
-  </div>
-</div>
-  </div>
-  <div id="line-chart"></div>
-</div>
 
 
 <footer>

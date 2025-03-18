@@ -174,7 +174,6 @@ img {
     width:90%; 
     height: 4px; 
     background-color:lightpink; 
-    margin: 20px auto; 
   }
 
 .contents {
@@ -357,3 +356,86 @@ input[type="radio"] {
 }
 
 /* You can keep the existing styles for #sliders-container and #grade-display or adjust them as needed */
+
+
+
+
+#line-chart-dashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+/* Line Chart: Takes Up Most Space */
+#line-chart {
+  flex-grow: 1;
+  min-height: 400px;
+  padding: 20px;
+  background: transparent;
+  box-shadow: none;
+  border: none; 
+}
+
+/* Right Side Controls (Stacked) */
+#line-chart-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 250px;
+}
+
+/* Styling for Selector Boxes */
+.selector-box {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+/* Headings */
+h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Labels for radio buttons */
+label {
+  display: block;
+  font-size: 16px;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+/* Radio Buttons */
+input[type="radio"] {
+  margin-right: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+  #line-chart-dashboard {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #line-chart {
+      width: 100%;
+  }
+
+  #line-chart-controls {
+      width: 100%;
+      align-items: center;
+  }
+
+  .selector-box {
+      width: 80%;
+      text-align: center;
+  }
+}
