@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Event listeners for student checkboxes
-  d3.selectAll("#student-selector input").on("change", function () {
+  d3.selectAll("#left-controls input").on("change", function () {
     const student = this.value;
     if (this.checked) {
       selectedStudents.add(student); // Add student to selection

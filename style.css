@@ -368,6 +368,23 @@ input[type="radio"] {
   padding: 20px;
 }
 
+#left-controls {
+  width: 250px; /* Fixed width for the left controls */
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+/* Right Side: Exam and Variable Selectors */
+#right-controls {
+  width: 250px; /* Fixed width for the right controls */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between exam and variable selectors */
+}
+
 /* Line Chart: Takes Up Most Space */
 #line-chart {
   flex-grow: 1;
@@ -384,6 +401,16 @@ input[type="radio"] {
   flex-direction: column;
   gap: 20px;
   width: 250px;
+  order: 3; /* Move the controls to the right */
+}
+
+#student-selector {
+  order: 1; /* Ensure the student selector is first within the controls */
+}
+
+#line-chart-exam-selector,
+#line-chart-variable-selector {
+  order: 2; /* Ensure these are after the student selector */
 }
 
 /* Styling for Selector Boxes */
@@ -435,5 +462,14 @@ input[type="radio"] {
   .selector-box {
       width: 80%;
       text-align: center;
+  }
+  
+  #left-controls,
+  #right-controls {
+    width: 100%;
+  }
+
+  #line-chart {
+    width: 100%;
   }
 }

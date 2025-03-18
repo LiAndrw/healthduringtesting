@@ -26,16 +26,16 @@
       
       
     
-    <p>Students were asked to wear the  <span class="popup-trigger">Empatica E4</span> wristband while they take their midterm 1&2 and final exams. The study recorded 6 health features during 3 exams for each student(10 students) and we focused on the following 4 features:</p>
+    <p>Students were asked to wear the  <span class="popup-trigger">Empatica E4</span> wristband while they take their midterm 1&2 and final exams. The study recorded 6 health features during 3 exams for each student (10 students). We focused on the following 4 features:</p>
       <ul>
-        <li><b>Skin Surface Temperature(TEMP)</b>: Measures skin temperature using a built-in temperature sensor in degrees Celsius (°C).</li>
-        <li><b>Electrodermal Activity(EDA)</b>: EDA reflects sweat gland activity, which is controlled by the autonomic nervous system.
+        <li><b>Skin Surface Temperature (TEMP)</b>: Measures skin temperature using a built-in temperature sensor in degrees Celsius (°C).</li>
+        <li><b>Electrodermal Activity (EDA)</b>: EDA reflects sweat gland activity, which is controlled by the autonomic nervous system.
           Higher values indicate increased stress.</li>
-        <li><b>Heart Rate(HR)</b>: Elevated heart rate is commonly associated with anxiety and cognitive load.</li>
-        <li><b>Blood Volume Pulse(BVP)</b>: Captures blood volume changes in the microvascular tissue using a photoplethysmograph (PPG) sensor.If high BVP is accompanied by high heart rate (HR) and increased electrodermal activity (EDA), it may indicate high cognitive stress.</li>
+        <li><b>Heart Rate (HR)</b>: Number of times a heart beats in a minute (BPM). Elevated heart rate is commonly associated with anxiety and cognitive load.</li>
+        <li><b>Blood Volume Pulse (BVP)</b>: Captures blood volume changes in the microvascular tissue using a photoplethysmograph (PPG) sensor. If high BVP is accompanied by high heart rate (HR) and increased electrodermal activity (EDA), it may indicate high cognitive stress.</li>
       </ul>
 
-    <p>Along with these 4 features, a new feature 🧠<b>Stress</b> was created that would track overall student stress felt during an exam.This was created by using the heart rate, blood volume pulse, and skin surface temperature features. Using the individual average student data per min datasets, each feature value was normalized using the global max/min values:</p>
+    <p>Along with these 4 features, a new feature, 🧠<b>Stress</b>, was created that would track overall student stress felt during an exam.This was created by using the heart rate, blood volume pulse, and skin surface temperature features. Using the individual average student data per min datasets, each feature value was normalized using the global max/min values:</p>
     <img src="images/stress.jpg" alt="stress formula"/> 
   </div>
 
@@ -49,59 +49,60 @@
 
  <hr class="custom-divider" />
  <div class="contents">
-     <p>We first wanted to show how the health features changed over the course of an exam. This visualization below shows the trends of given health features for students over the course of any given exam. 
+     <p>We first wanted to show how the health features changed over the course of an exam. This visualization below shows the trends of given health features for students over the course of any given exam. Try selecting different exams, health variables, and students using the buttons on the left and right and see if you see any patterns/trends!
      </p>
  </div>
 
 <!-- Main Line Chart Dashboard -->
 <div id="line-chart-dashboard">
+  <!-- Left Side: Student Selector -->
+  <div id="left-controls" class="box">
+    <h3>Select Students:</h3>
+    <label><input type="checkbox" name="student" value="s1" checked> Student 1</label>
+    <label><input type="checkbox" name="student" value="s2" checked> Student 2</label>
+    <label><input type="checkbox" name="student" value="s3" checked> Student 3</label>
+    <label><input type="checkbox" name="student" value="s4" checked> Student 4</label>
+    <label><input type="checkbox" name="student" value="s5" checked> Student 5</label>
+    <label><input type="checkbox" name="student" value="s6" checked> Student 6</label>
+    <label><input type="checkbox" name="student" value="s7" checked> Student 7</label>
+    <label><input type="checkbox" name="student" value="s8" checked> Student 8</label>
+    <label><input type="checkbox" name="student" value="s9" checked> Student 9</label>
+    <label><input type="checkbox" name="student" value="s10" checked> Student 10</label>
+  </div>
+
+  <!-- Center: Visualization -->
   <div id="line-chart" class="box"></div>
-  <div id="line-chart-controls">
-      <!-- Exam Selector -->
-      <div id="line-chart-exam-selector" class="box">
-          <h3>Select Exam:</h3>
-          <label><input type="radio" name="line-chart-exam" value="midterm_1" checked> Midterm 1</label>
-          <label><input type="radio" name="line-chart-exam" value="midterm_2"> Midterm 2</label>
-          <label><input type="radio" name="line-chart-exam" value="final"> Final</label>
-      </div>
 
-      <!-- Variable Selector -->
-      <div id="line-chart-variable-selector" class="box">
-          <h3>Select Health Variable:</h3>
-          <label><input type="radio" name="line-chart-variable" value="stress" checked> Stress</label>
-          <label><input type="radio" name="line-chart-variable" value="hr"> Heart Rate (HR)</label>
-          <label><input type="radio" name="line-chart-variable" value="bvp"> Blood Volume Pulse (BVP)</label>
-          <label><input type="radio" name="line-chart-variable" value="temp"> Temperature (TEMP)</label>
-          <label><input type="radio" name="line-chart-variable" value="eda"> Electrodermal Activity (EDA)</label>
-      </div>
+  <!-- Right Side: Exam and Variable Selectors -->
+  <div id="right-controls">
+    <div id="line-chart-exam-selector" class="box">
+      <h3>Select Exam:</h3>
+      <label><input type="radio" name="line-chart-exam" value="midterm_1" checked> Midterm 1</label>
+      <label><input type="radio" name="line-chart-exam" value="midterm_2"> Midterm 2</label>
+      <label><input type="radio" name="line-chart-exam" value="final"> Final</label>
+    </div>
 
-      <!-- Student Selector -->
-      <div id="student-selector" class="box">
-          <h3>Select Students:</h3>
-          <label><input type="checkbox" name="student" value="s1" checked> Student 1</label>
-          <label><input type="checkbox" name="student" value="s2" checked> Student 2</label>
-          <label><input type="checkbox" name="student" value="s3" checked> Student 3</label>
-          <label><input type="checkbox" name="student" value="s4" checked> Student 4</label>
-          <label><input type="checkbox" name="student" value="s5" checked> Student 5</label>
-          <label><input type="checkbox" name="student" value="s6" checked> Student 6</label>
-          <label><input type="checkbox" name="student" value="s7" checked> Student 7</label>
-          <label><input type="checkbox" name="student" value="s8" checked> Student 8</label>
-          <label><input type="checkbox" name="student" value="s9" checked> Student 9</label>
-          <label><input type="checkbox" name="student" value="s10" checked> Student 10</label>
-      </div>
+    <div id="line-chart-variable-selector" class="box">
+      <h3>Select Health Variable:</h3>
+      <label><input type="radio" name="line-chart-variable" value="stress" checked> Stress</label>
+      <label><input type="radio" name="line-chart-variable" value="hr"> Heart Rate (HR)</label>
+      <label><input type="radio" name="line-chart-variable" value="bvp"> Blood Volume Pulse (BVP)</label>
+      <label><input type="radio" name="line-chart-variable" value="temp"> Temperature (TEMP)</label>
+      <label><input type="radio" name="line-chart-variable" value="eda"> Electrodermal Activity (EDA)</label>
+    </div>
   </div>
 </div>
 
 <div class="contents">
-  <p><b>Interesting Takeaways</b>:The heart rates of students for all tests seems to steadily decrease. For all tests, students experienced a slight drop in skin surface temperature, which then increases significantly and stays high until the end of the exam. Blood volume pulse shows little correlation with exam duration, but all tests have momentary spikes for certain students. The same could also be said for electrodermal activity, although there seems to be a slight trend of EDA increasing in the second half of an exam for most students. </p>
+  <p><b>Interesting Takeaways</b>: The heart rates of students for all tests seems to steadily decrease as an exam goes on. For Midterm 2 and the Final exam, students experienced a slight drop in skin surface temperature, which then increased significantly and stayed high until the end of the exam. In contrast, for Midterm 1, the students didn't experience notable decreases in skin surface temperature, and TEMP only began significantly increased after the testing duration was already halfway over. Blood volume pulse shows little correlation with exam duration, but all tests have momentary spikes for certain students. The same could also be said for electrodermal activity, although there seems to be a slight trend of EDA increasing in the second half of an exam for most students. </p>
 </div>
 
  
 <hr class="custom-divider" />
  <div class="contents">
-     <p>We then wanted to show the correlation between average health feature values and how well students performed on a given test. This visualization shows the given average health feature values of students and shows how they relate to how well each student did on a given test.
+     <p>We then wanted to show the correlation between average health feature values and how well students performed on a given test. This visualization shows the given average health feature values of students and shows how they relate to how well each student did on a given test. Try selecting different exams and health variables using the buttons on the left and right and see if you see any patterns/trends!
      </p>
-     <p2>Hover over the point for more info</p2>
+     <p>Also, hover over the points on the graph for specific info on the students!</p>
  </div>
 
 <!--Visualization 2-->
@@ -127,7 +128,7 @@
 </div>
 
 <div class="contents">
-  <p><b>Interesting Takeaways</b>: Interestingly, in all exams, the more stressed students tended to perform better on average. The same is true for students with higher avergae heart rate and temperature as well. Meanwhile, blood volume pulse and electrodermal activity seem to have little correlation with how well students perform. </p>
+  <p><b>Interesting Takeaways</b>: Surprisingly, in all exams, the more stressed students tended to perform better on average. The same is true for students with higher average heart rate and temperature as well. Meanwhile, blood volume pulse and electrodermal activity seem to have little correlation with how well students perform. </p>
 </div>
 
 
@@ -136,19 +137,26 @@
 
 <!--Visualization 3-->
 <div class="contents">
-  <p>In the visualization below, users can adjust health feature sliders to set desired physiological values, see the student whose exam data closely matches those values along with their grade.</p>
+  <p>Finally, in the visualization below, users can adjust health feature sliders to set desired physiological values and see the student whose exam data closely matches those values along with their grade. Try to notice any patterns! Which sliders seem to have the most and least impact on how many predictions appear?</p>
 </div>
 <div id="dashboard"></div>
 <div class="contents">
-  <p><b>Interesting Takeaways</b>:Some sliders seem to have much more impact on the prediction. The visualization and the chosen grade is constantly changing while dragging the Average EDA slider, while the BVP slider rarely changes the chosen grade. This might be an indicator that some features are more correlated with a student’s grade.
+  <p><b>Interesting Takeaways</b>: Some sliders seem to have much more impact on the prediction. The visualization and the chosen grade is frequently changing while dragging the Average EDA and STRESS sliders, while the HR and TEMP slider seem to cause fewer changes, and the BVP slider rarely changes the chosen grade. This might be an indicator that some features are more correlated with a student’s grade. The combinations of which sliders are being chosen and the values they are set at also seems to have an impact on the frequency of changes in the prediction.
   </p>
 </div>
 
 <div class="contents">
-  <p><b>Final Takeaway</b></p>
-  <p>Our research on this dataset has led us to some interesting conclusions. The most important one is the correlation between overall stress levels and grades. Contrary to the general assumption, Students performed better under stress. The reason behind this phenomenon requires further study. Some hypotheses we have now include: stress levels may enhance students’ focus and more stressed students might be better prepared for the exams. Another thing we noticed is that some features have a bigger impact on the student’s grade, and might be a better indicator of stress, like EDA and heart rate. In contrast, other features like BVP and temperature are less helpful for indicating stress and may better be omitted in future studies on stress analysis. 
+  <p><b>So what did we learn?</b></p>
+  <p>Wow, our research on this dataset has led us to some interesting conclusions! The most important one is the correlation between overall stress levels and grades. Contrary to the general assumption, <b>the students in this study performed better under more stress</b>. The reason behind this phenomenon requires further study. We have some hypotheses as to why this may be the case. Higher tress levels may enhance students’ focus and make them better prepared for the exams. Students may also be more stressed if they prepared a lot for an exam and are worried that their efforts will be wasted, while students who didn't prepare for an exam as hard are less stressed about their studying being wasted. Maybe these students were just outliers and the study needed a larger sample size.</p>
+  <p> Another thing we found are interesting trends in certain health features as an exam goes on. <b>Skin surface temperature always increased significantly at some point during tests and remained high until the end.</b> In contrast, <b>heart rate steadily decreased for the entire duration of the exams.</b> Some features also didn't have clear trends as time passed, such as BVP, while others had different trends for specific exams, such as EDA, or a bit of both, like STRESS. Of note is that, <b>for EDA and BVP, there were massive spikes in the data for specific students at seemingly-random intervals.</b></p> 
+  <p> Finally, we noticed that <b>some features have a big impact on the student’s grade and might be good indicators of stress, like EDA and heart rate. In contrast, other features like BVP and temperature are less helpful for indicating stress and should potentially be omitted in future studies on stress analysis</b>. 
   </p>
+
+  <img src="/images/stressedstudent.jpeg" alt="stressed out student taking a test"/>
+  <p>Hopefully, the next time you feel stressed out and under pressure for an exam, you will remember the results of this project and feel a little bit better about your chances at getting the grade that you want!</p>
 </div>
+
+
 
 <footer>
   <p>©2025 Made by Zifan Luo, Junhao Yang, Andrew Li.</p>
